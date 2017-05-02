@@ -1,0 +1,24 @@
+{
+  "name": "jscrambler-webpack-plugin",
+  "version": "1.0.0",
+  "description": "A webpack plugin to protect your generated bundle using Jscrambler",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jscrambler/jscrambler-webpack-plugin.git"
+  },
+  "keywords": [
+    "jscrambler",
+    "javascript",
+    "webpack"
+  ],
+  "author": "Jscrambler <support@jscrambler.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jscrambler/jscrambler-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/jscrambler/jscrambler-webpack-plugin#readme"
+}
