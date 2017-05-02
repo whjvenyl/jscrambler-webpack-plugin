@@ -2,9 +2,10 @@
   "name": "jscrambler-webpack-plugin",
   "version": "1.0.0",
   "description": "A webpack plugin to protect your generated bundle using Jscrambler",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "npm run build",
+    "build": "babel src --out-dir lib"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,12 @@
   "bugs": {
     "url": "https://github.com/jscrambler/jscrambler-webpack-plugin/issues"
   },
-  "homepage": "https://github.com/jscrambler/jscrambler-webpack-plugin#readme"
+  "homepage": "https://github.com/jscrambler/jscrambler-webpack-plugin#readme",
+  "dependencies": {
+    "jscrambler": "^1.1.6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.4.0"
+  }
 }
