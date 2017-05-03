@@ -10,11 +10,16 @@ class JscramblerPlugin {
   }
 
   apply (compiler) {
-    const enable = this.options.enable || true;
-    enable && compiler.plugin('emit', (compilation, callback) => {
+    const enable = this.options.enable !== undefined ? this.options.enable : true;
+
+    if (!enable) {
+      return;
+    }
+
+    compiler.plugin('emit', (compilation, callback) => {
       const sources = [];
       compilation.chunks.forEach((chunk) => {
-        if (this.options.chunks && !this.options.chunks.includes(chunk.name)) {
+        if (Array.isArray(this.options.chunks) && !this.options.chunks.includes(chunk.name)) {
           return;
         }
 
@@ -27,13 +32,17 @@ class JscramblerPlugin {
         });
       });
 
-      client.protectAndDownload(Object.assign(
-        this.options,
-        {
-          sources,
-          stream: false
-        }
-      ), res => this.processResult(res, compilation, callback));
+      if (sources.length > 0) {
+        client.protectAndDownload(Object.assign(
+          this.options,
+          {
+            sources,
+            stream: false
+          }
+        ), res => this.processResult(res, compilation, callback));
+      } else {
+        callback();
+      }
     });
   }
 
