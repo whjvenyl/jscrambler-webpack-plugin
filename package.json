@@ -4,6 +4,7 @@
   "description": "A webpack plugin to protect your generated bundle using Jscrambler",
   "main": "lib/index.js",
   "scripts": {
+    "prepare": "npm run build",
     "prepublish": "npm run build",
     "build": "babel src --out-dir lib"
   },
