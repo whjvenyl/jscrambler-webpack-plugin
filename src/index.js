@@ -24,7 +24,7 @@ class JscramblerPlugin {
         }
 
         chunk.files.forEach((filename) => {
-          if (/\.(jsx?|map|html|htm)$/.test(filename)) {
+          if (/\.(js|map|html|htm)$/.test(filename)) {
             const content = compilation.assets[filename].source();
 
             sources.push({content, filename});
@@ -43,7 +43,7 @@ class JscramblerPlugin {
           ), res => this.processResult(res, compilation, callback))
         )
         .catch((err) => {
-          callback(`Jscrambler Error: ${err.message}`);
+          callback(`Jscrambler ${err}`);
         });
       } else {
         callback();
