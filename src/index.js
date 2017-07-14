@@ -33,13 +33,18 @@ class JscramblerPlugin {
       });
 
       if (sources.length > 0) {
-        client.protectAndDownload(Object.assign(
-          this.options,
-          {
-            sources,
-            stream: false
-          }
-        ), res => this.processResult(res, compilation, callback));
+        Promise.resolve(
+          client.protectAndDownload(Object.assign(
+            this.options,
+            {
+              sources,
+              stream: false
+            }
+          ), res => this.processResult(res, compilation, callback))
+        )
+        .catch((err) => {
+          callback(`Jscrambler Error: ${err.message}`);
+        });
       } else {
         callback();
       }
