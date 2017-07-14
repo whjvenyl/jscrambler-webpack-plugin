@@ -24,7 +24,7 @@ class JscramblerPlugin {
         }
 
         chunk.files.forEach((filename) => {
-          if (/\.(jsx?|map|html|htm)$/.test(filename)) {
+          if (/\.(js|map|html|htm)$/.test(filename)) {
             const content = compilation.assets[filename].source();
 
             sources.push({content, filename});
@@ -33,13 +33,18 @@ class JscramblerPlugin {
       });
 
       if (sources.length > 0) {
-        client.protectAndDownload(Object.assign(
-          this.options,
-          {
-            sources,
-            stream: false
-          }
-        ), res => this.processResult(res, compilation, callback));
+        Promise.resolve(
+          client.protectAndDownload(Object.assign(
+            this.options,
+            {
+              sources,
+              stream: false
+            }
+          ), res => this.processResult(res, compilation, callback))
+        )
+        .catch((err) => {
+          callback(`Jscrambler ${err}`);
+        });
       } else {
         callback();
       }

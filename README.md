@@ -33,11 +33,14 @@ module.exports = {
     new JscramblerWebpack({
       enable: true, // optional, defaults to true
       chunks: ['protected'] // optional, defaults to all chunks
+      params: [], 
+      applicationTypes: {}
+      // and other jscrambler configurations
     })
   ]
 };
 ```
 
-The Jscrambler client will use .jscramblerrc as usual, though it is possible to override specific values using the plugin's configuration
+The Jscrambler client will use .jscramblerrc as usual, though it is possible to override specific values using the plugin's configuration.
 
 Additionally, you may specify which chunks to protect using the `chunks` property, which accepts an array with the names of the chunks you wish to protect.
